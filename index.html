@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f7f5">
+    <title>Study Plan Recovery</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="planner.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">COGPACE / STUDY TOOLS</p>
+        <h1>Study Plan Recovery</h1>
+      </div>
+      <p class="status" id="status" aria-live="polite">Local only</p>
+    </header>
+
+    <main>
+      <section class="editor" aria-labelledby="tasks-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">01 / YOUR PLAN</p>
+            <h2 id="tasks-heading">Tasks and prerequisites</h2>
+          </div>
+          <button class="text-button" id="reset" type="button">Restore example</button>
+        </div>
+        <label for="task-input">One task per line: name | minutes | prerequisite names</label>
+        <textarea id="task-input" rows="5" spellcheck="false"></textarea>
+        <p class="hint">A task stays deferred if its prerequisite cannot fit in the revised plan.</p>
+      </section>
+
+      <section class="budget" aria-labelledby="budget-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">02 / AVAILABLE TIME</p>
+            <h2 id="budget-heading">Adjust the session</h2>
+          </div>
+          <output id="budget-output" for="budget">25 min</output>
+        </div>
+        <input id="budget" type="range" min="0" max="45" value="25" step="1" aria-label="Available minutes">
+        <div class="range-labels"><span>0 min</span><span id="total-label">45 min total</span></div>
+      </section>
+
+      <section class="comparison" aria-label="Plan comparison">
+        <div class="plan-column">
+          <p class="eyebrow">CURRENT PLAN</p>
+          <div class="plan-total"><strong id="current-total">45</strong><span>minutes</span></div>
+          <ul id="current-list" class="task-list"></ul>
+        </div>
+        <div class="plan-column proposed">
+          <p class="eyebrow">PROPOSED REVISION</p>
+          <div class="plan-total"><strong id="proposed-total">25</strong><span>minutes</span></div>
+          <ul id="proposed-list" class="task-list"></ul>
+        </div>
+      </section>
+
+      <section class="deferred" id="deferred-section" aria-labelledby="deferred-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">STILL VISIBLE</p>
+            <h2 id="deferred-heading">Deferred work</h2>
+          </div>
+          <span class="count" id="deferred-count">1</span>
+        </div>
+        <ul id="deferred-list" class="task-list"></ul>
+      </section>
+
+      <p class="error" id="error" role="alert" hidden></p>
+      <div class="actions">
+        <button class="primary-button" id="adopt" type="button">Adopt revised plan</button>
+      </div>
+      <p class="disclosure">A deterministic planning demo, not a measure of learning value. Your entries stay in this page and are not sent or saved.</p>
+    </main>
+  </body>
+</html>
